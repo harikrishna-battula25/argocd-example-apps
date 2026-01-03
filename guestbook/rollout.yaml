@@ -24,7 +24,7 @@ spec:
 
   strategy:
     blueGreen:
-      activeService: guestbook-ro-active
-      previewService: guestbook-ro-preview
+      activeService: guestbook-ui
+      previewService: guestbook-ui-preview
       autoPromotionEnabled: false
       scaleDownDelaySeconds: 30

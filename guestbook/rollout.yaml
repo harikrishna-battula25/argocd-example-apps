@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: guestbook-ro
+  namespace: guestbook
+spec:
+  replicas: 3
+  revisionHistoryLimit: 2
+
+  selector:
+    matchLabels:
+      app: guestbook-ro
+
+  template:
+    metadata:
+      labels:
+        app: guestbook-ro
+    spec:
+      containers:
+        - name: guestbook-ro
+          image: gcr.io/google-samples/gb-frontend:v5
+          ports:
+            - containerPort: 80
+
+  strategy:
+    blueGreen:
+      activeService: guestbook-ro-active
+      previewService: guestbook-ro-preview
+      autoPromotionEnabled: false
+      scaleDownDelaySeconds: 30

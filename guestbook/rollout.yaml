@@ -9,12 +9,12 @@ spec:
 
   selector:
     matchLabels:
-      app: guestbook-ro
+      app: guestbook-ui
 
   template:
     metadata:
       labels:
-        app: guestbook-ro
+        app: guestbook-ui
     spec:
       containers:
         - name: guestbook-ro

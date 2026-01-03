@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: blue-green
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: blue-green
+  namespace: blue-green
+spec:
+  replicas: 2
+  strategy:
+    blueGreen:
+      activeService: blue-green
+      previewService: blue-green-preview
+  selector:
+    matchLabels:
+      app: blue-green
+  template:
+    metadata:
+      labels:
+        app: blue-green
+    spec:
+      containers:
+      - name: blue-green
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-green
+  namespace: blue-green
+spec:
+  selector:
+    app: blue-green
+  ports:
+    - port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: blue-green-preview
+  namespace: blue-green
+spec:
+  selector:
+    app: blue-green
+  ports:
+    - port: 80
+      targetPort: http

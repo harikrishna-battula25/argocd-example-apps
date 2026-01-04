@@ -26,7 +26,7 @@ data:
       </style>
     </head>
     <body>
-      <h1>🚀 Blue-Green Rollout</h1>
+      <h1>🚀 Blue-Green Rollout Preview</h1>
       <p>Served by nginx via Argo Rollouts</p>
     </body>
     </html>

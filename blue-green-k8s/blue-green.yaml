@@ -25,7 +25,8 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginxdemos/hello   # 🔵 BLUE VERSION
+        #image: nginxdemos/hello   # 🔵 BLUE VERSION
+        image: nginxdemos/hello:plain-text   # 🟢 GREEN VERSION
         ports:
         - containerPort: 80
 ---
